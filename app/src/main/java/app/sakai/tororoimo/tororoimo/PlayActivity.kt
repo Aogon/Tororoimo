@@ -5,12 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_play.*
 
 class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecognizerResponseListener {
 
@@ -20,6 +22,21 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     private var speechState = false
 
     var permissionState : Boolean = false
+    var second = 30
+
+    val timer : CountDownTimer = object  :CountDownTimer(10000, 1000) {
+        override fun onFinish() {
+            second = 0
+            secondText.text = second.toString()
+            stopListening()
+        }
+
+        override  fun onTick(millisUntilFinished: Long) {
+            second = second - 1
+            secondText.text = second.toString()
+
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +57,9 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         setupSpeechRecognizer()
 
         setupRecognizerIntent()
+
+        startListening()
+        timer.start()
 
 
 
