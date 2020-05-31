@@ -104,7 +104,18 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     }
 
     override fun onResultsResponse(speechText: String) {
-        Toast.makeText(this, speechText, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, speechText, Toast.LENGTH_SHORT).show()
+        Log.d("speechText", speechText)
+        val speechTextArray: CharArray = speechText.toCharArray()
+        var textNumber: Int = 0
+        for (i in speechTextArray) {
+            if(i == 'と' || i == 'た' || i == '取' || i == '谷' || i == '事'|| i == '元' || i == '止' || i == '頼' || i == '戻') {
+                textNumber++
+                Log.d("content of i", i.toString())
+            }
+        }
+
+        Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
     }
 }
 
@@ -159,6 +170,7 @@ class SimpleRecognizerListener(private val listener: SimpleRecognizerResponseLis
             listener.onResultsResponse("")
         } else {
             listener.onResultsResponse(speechText)
+
         }
     }
 }
