@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#257728"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="76dp"
         android:text="とろろいも"
-        android:textColor="#EFF0B3"
+        android:textColor="@color/tororoColor"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="86dp"
         android:text="巻き舌練習ゲーム"
-        android:textColor="#EFF0B3"
+        android:textColor="@color/tororoColor"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
