@@ -9,6 +9,7 @@ import android.os.CountDownTimer
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -58,6 +59,16 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         setupRecognizerIntent()
 
+//        startButton.setOnClickListener {
+//            if (speechState) {
+//                startButton.text = "スタート"
+//                stopListening()
+//            } else {
+//                startButton.text = "ストップ"
+//                startListening()
+//            }
+//        }
+
         startListening()
         timer.start()
 
@@ -104,35 +115,35 @@ class SimpleRecognizerListener(private val listener: SimpleRecognizerResponseLis
     }
 
     override fun onReadyForSpeech(params: Bundle?) {
-        TODO("Not yet implemented")
+        Log.d("ReadyForSpeech", params.toString())
     }
 
     override fun onRmsChanged(rmsdB: Float) {
-        TODO("Not yet implemented")
+        Log.d("RmsChanged", rmsdB.toString())
     }
 
     override fun onBufferReceived(buffer: ByteArray?) {
-        TODO("Not yet implemented")
+        Log.d("onBufferReceived", buffer.toString())
     }
 
     override fun onPartialResults(partialResults: Bundle?) {
-        TODO("Not yet implemented")
+        Log.d("PartialResults", partialResults.toString())
     }
 
     override fun onEvent(eventType: Int, params: Bundle?) {
-        TODO("Not yet implemented")
+        Log.d("Event", eventType.toString())
     }
 
     override fun onBeginningOfSpeech() {
-        TODO("Not yet implemented")
+        Log.d("onBeginningOfSpeech", "onBeginningOfSpeech")
     }
 
     override fun onEndOfSpeech() {
-        TODO("Not yet implemented")
+        Log.d("onEndOfSpeech", "onEndOfSpeech")
     }
 
     override fun onError(error: Int) {
-        TODO("Not yet implemented")
+        Log.d("Error", error.toString())
     }
 
     override fun onResults(results: Bundle?) {
