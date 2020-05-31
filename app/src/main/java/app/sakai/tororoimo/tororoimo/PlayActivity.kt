@@ -23,7 +23,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     private var speechState = false
 
     var permissionState : Boolean = false
-    var second = 30
+    var second = 10
 
     val timer : CountDownTimer = object  :CountDownTimer(10000, 1000) {
         override fun onFinish() {
