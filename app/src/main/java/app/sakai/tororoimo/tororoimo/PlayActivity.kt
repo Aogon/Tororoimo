@@ -59,15 +59,6 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         setupRecognizerIntent()
 
-//        startButton.setOnClickListener {
-//            if (speechState) {
-//                startButton.text = "スタート"
-//                stopListening()
-//            } else {
-//                startButton.text = "ストップ"
-//                startListening()
-//            }
-//        }
 
         startListening()
         timer.start()
