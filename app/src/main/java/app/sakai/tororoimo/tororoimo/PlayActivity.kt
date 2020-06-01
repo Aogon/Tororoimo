@@ -107,6 +107,8 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         }
 
         Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, ResultActivity::class.java)
+        startActivity(intent)
     }
 }
 
