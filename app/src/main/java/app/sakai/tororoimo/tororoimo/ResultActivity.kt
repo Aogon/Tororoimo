@@ -13,5 +13,6 @@ class ResultActivity : AppCompatActivity() {
         val resultNumber: Int = intent.getIntExtra("ResultNumber", 0)
         resultView.text = resultNumber.toString()
 
+
     }
 }

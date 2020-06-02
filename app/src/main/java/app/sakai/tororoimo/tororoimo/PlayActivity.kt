@@ -6,14 +6,22 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.provider.Contacts
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_play.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecognizerResponseListener {
 
@@ -21,6 +29,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     private lateinit var recognizerIntent: Intent
 
     private var speechState = false
+    private var isAnimated = true
 
     var permissionState : Boolean = false
     var second = 10
@@ -38,6 +47,21 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         }
     }
+    val anim1 = TranslateAnimation(
+        Animation.RELATIVE_TO_SELF, -0.5f,
+        Animation.RELATIVE_TO_SELF, 0.5f,
+        Animation.RELATIVE_TO_SELF, 0.0f,
+        Animation.RELATIVE_TO_SELF, 0.0f)
+
+    val anim2 = TranslateAnimation(
+        Animation.RELATIVE_TO_SELF, 0.5f,
+        Animation.RELATIVE_TO_SELF, -0.5f,
+        Animation.RELATIVE_TO_SELF, 0.0f,
+        Animation.RELATIVE_TO_SELF, 0.0f)
+
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +83,14 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         setupRecognizerIntent()
 
+        anim1.duration = 2000
+        anim2.duration = 2000
+        GlobalScope.launch{
+            while (isAnimated) {
+                tororoimoView.startAnimationAsync(anim1)
+                tororoimoView.startAnimationAsync(anim2)
+            }
+        }
 
         startListening()
         timer.start()
@@ -107,9 +139,32 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         }
 
         Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
+        isAnimated = false
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("ResultNumber", textNumber)
         startActivity(intent)
+    }
+
+    suspend fun View.startAnimationAsync(anim: Animation) {
+
+        return suspendCoroutine { continuation ->
+            anim.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+                    Log.d("AnimationStart", animation.toString())
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    continuation.resume(Unit)
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+                    Log.d("AnimationRepeat", animation.toString())
+                }
+            })
+
+            this.startAnimation(anim)
+
+        }
     }
 }
 
