@@ -13,6 +13,8 @@ import android.speech.SpeechRecognizer
 import android.util.Log
 import android.view.View
 import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -53,13 +55,18 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         Animation.RELATIVE_TO_SELF, 0.0f,
         Animation.RELATIVE_TO_SELF, 0.0f)
 
-    val anim2 = TranslateAnimation(
-        Animation.RELATIVE_TO_SELF, 0.5f,
-        Animation.RELATIVE_TO_SELF, -0.5f,
-        Animation.RELATIVE_TO_SELF, 0.0f,
-        Animation.RELATIVE_TO_SELF, 0.0f)
+//    val anim2 = TranslateAnimation(
+//        Animation.RELATIVE_TO_SELF, 0.5f,
+//        Animation.RELATIVE_TO_SELF, -0.5f,
+//        Animation.RELATIVE_TO_SELF, 0.0f,
+//        Animation.RELATIVE_TO_SELF, 0.0f)
 
+    val anim3 = ScaleAnimation(
+        1.0f, 1.0f, 1.0f, 0.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.0f
+    )
 
+    val set1: AnimationSet = AnimationSet(true)
+//    val set2: AnimationSet = AnimationSet(true)
 
 
 
@@ -83,13 +90,25 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         setupRecognizerIntent()
 
-        anim1.duration = 2000
-        anim2.duration = 2000
+        anim1.duration = 1000
+        anim1.repeatCount = -1
+        anim1.repeatMode = Animation.REVERSE
+        anim3.duration = 10000
+        anim3.repeatCount = -1
+        set1.addAnimation(anim1)
+        set1.addAnimation(anim3)
+
+
+//        set2.addAnimation(anim2)
+//        set2.addAnimation(anim3)
+//        set2.duration = 2000
+//        set2.fillAfter
+
         GlobalScope.launch{
-            while (isAnimated) {
-                tororoimoView.startAnimationAsync(anim1)
-                tororoimoView.startAnimationAsync(anim2)
-            }
+//            while (isAnimated) {
+                tororoimoView.startAnimationAsync(set1)
+//                tororoimoView.startAnimationAsync(set2)
+//            }
         }
 
         startListening()
