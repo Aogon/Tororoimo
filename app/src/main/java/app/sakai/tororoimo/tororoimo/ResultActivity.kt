@@ -22,9 +22,13 @@ class ResultActivity : AppCompatActivity() {
         val resultNumber: Int = intent.getIntExtra("ResultNumber", 0)
         resultView.text = resultNumber.toString()
 
+        val cumulativeTextNumber: Int = intent.getIntExtra("CumulativeTextNumber", 0)
 
-        val dialog = CustomDialogFragment()
-        dialog.show(this.supportFragmentManager, "achieve")
+        if (cumulativeTextNumber >= 30) {
+            val dialog = CustomDialogFragment()
+            dialog.show(this.supportFragmentManager, "achieve")
+        }
+
 
     }
 

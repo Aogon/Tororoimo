@@ -1,7 +1,9 @@
 package app.sakai.tororoimo.tororoimo
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -71,6 +73,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
     val set1: AnimationSet = AnimationSet(true)
 //    val set2: AnimationSet = AnimationSet(true)
+
 
 
 
@@ -164,10 +167,22 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
         isAnimated = false
-        val s1 = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        Log.d("Date", s1)
+        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        Log.d("Date", date)
+
+        val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+
+        val pastTextNumber = dataStore.getInt(date, 0)
+        val cumulativeTextNumber = pastTextNumber + textNumber
+        val editor = dataStore.edit()
+        editor.putInt(date, cumulativeTextNumber)
+        editor.apply()
+        Log.d("cumulativeTextNumber", cumulativeTextNumber.toString())
+
+
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("ResultNumber", textNumber)
+        intent.putExtra("CumulativeTextNumber", cumulativeTextNumber)
         startActivity(intent)
     }
 
