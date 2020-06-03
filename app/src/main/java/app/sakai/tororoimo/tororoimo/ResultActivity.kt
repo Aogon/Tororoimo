@@ -1,8 +1,17 @@
 package app.sakai.tororoimo.tororoimo
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
+import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.activity_result.*
+import java.lang.IllegalStateException
 
 class ResultActivity : AppCompatActivity() {
 
@@ -14,5 +23,11 @@ class ResultActivity : AppCompatActivity() {
         resultView.text = resultNumber.toString()
 
 
+        val dialog = CustomDialogFragment()
+        dialog.show(this.supportFragmentManager, "achieve")
+
     }
+
 }
+
+
