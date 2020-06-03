@@ -3,6 +3,7 @@ package app.sakai.tororoimo.tororoimo
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -17,11 +18,14 @@ import android.view.animation.AnimationSet
 import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_play.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -145,6 +149,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         speechRecognizer.stopListening()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onResultsResponse(speechText: String) {
 //        Toast.makeText(this, speechText, Toast.LENGTH_SHORT).show()
         Log.d("speechText", speechText)
@@ -159,6 +164,8 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
         isAnimated = false
+        val s1 = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        Log.d("Date", s1)
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("ResultNumber", textNumber)
         startActivity(intent)
