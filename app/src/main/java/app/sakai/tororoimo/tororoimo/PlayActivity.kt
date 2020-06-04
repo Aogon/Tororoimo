@@ -181,6 +181,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
 
         val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("Date", date)
         intent.putExtra("ResultNumber", textNumber)
         intent.putExtra("CumulativeTextNumber", cumulativeTextNumber)
         startActivity(intent)

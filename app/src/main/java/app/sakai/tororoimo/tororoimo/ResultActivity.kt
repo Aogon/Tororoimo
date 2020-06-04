@@ -2,19 +2,28 @@ package app.sakai.tororoimo.tororoimo
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager.getDefaultSharedPreferences
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.activity_result.*
 import java.lang.IllegalStateException
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class ResultActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -24,9 +33,20 @@ class ResultActivity : AppCompatActivity() {
 
         val cumulativeTextNumber: Int = intent.getIntExtra("CumulativeTextNumber", 0)
 
-        if (cumulativeTextNumber >= 30) {
+        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+        val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
+        val quotaState: Boolean = dataStore.getBoolean("QuotaState$date", false)
+
+        Log.d("quotaState", quotaState.toString())
+
+        if (cumulativeTextNumber >= 30 && !quotaState) {
+            val editor = dataStore.edit()
+            editor.putBoolean("QuotaState$date", true)
+            editor.apply()
             val dialog = CustomDialogFragment()
             dialog.show(this.supportFragmentManager, "achieve")
+
         }
 
 
