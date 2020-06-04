@@ -46,7 +46,9 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         override fun onFinish() {
             second = 0
             secondText.text = second.toString()
+            isAnimated = false
             stopListening()
+            Log.d("timer", "Finished")
         }
 
         override  fun onTick(millisUntilFinished: Long) {
@@ -112,10 +114,9 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 //        set2.fillAfter
 
         GlobalScope.launch{
-//            while (isAnimated) {
+            while (isAnimated) {
                 tororoimoView.startAnimationAsync(set1)
-//                tororoimoView.startAnimationAsync(set2)
-//            }
+            }
         }
 
         startListening()
@@ -150,6 +151,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     private fun stopListening() {
         speechState = false
         speechRecognizer.stopListening()
+        Log.d("stopListening", "stopListening")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -166,7 +168,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         }
 
         Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
-        isAnimated = false
+
         val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         Log.d("Date", date)
 
