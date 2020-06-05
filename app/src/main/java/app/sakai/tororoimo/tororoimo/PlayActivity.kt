@@ -46,7 +46,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         override fun onFinish() {
             second = 0
             secondText.text = second.toString()
-            isAnimated = false
+            tororoimoView.clearAnimation()
             stopListening()
             Log.d("timer", "Finished")
         }
@@ -114,9 +114,9 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 //        set2.fillAfter
 
         GlobalScope.launch{
-            while (isAnimated) {
-                tororoimoView.startAnimationAsync(set1)
-            }
+
+            tororoimoView.startAnimationAsync(set1)
+
         }
 
         startListening()
