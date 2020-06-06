@@ -3,4 +3,8 @@
     <string name="explanation1">これは、巻き舌ができるようになるためのゲームだよ。</string>
     <string name="explanation2">３ヶ月、「とろろいも」と言う練習を続けると、\n巻き舌ができるように\nなるらしいよ。</string>
     <string name="explanation3">これから一緒に頑張ろう！</string>
+    <string name="howtoplay1">「とろろいも」</string>
+    <string name="howtoplay2">と言い続けてね。</string>
+    <string name="howtoplay3">できるだけたくさん\nすり下ろそう！</string>
+    <string name="howtoplay4">\\ とろろいも！/</string>
 </resources>

@@ -52,7 +52,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/returnToMainButton"
+        app:layout_constraintBottom_toTopOf="@+id/resultReturnButton"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -81,18 +81,18 @@
         app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
     <ImageButton
-        android:id="@+id/returnToMainButton"
+        android:id="@+id/resultReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="12dp"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/resultReplayButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/return_button" />
 
     <ImageButton
-        android:id="@+id/returnToPlayButton"
+        android:id="@+id/resultReplayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"

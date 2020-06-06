@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        playButton.setOnClickListener {
+        mainPlayButton.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
