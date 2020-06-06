@@ -15,5 +15,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
+
+        mainHowToPlayButton.setOnClickListener {
+            val intent = Intent(this, ExplanationActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
