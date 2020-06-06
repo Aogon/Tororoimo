@@ -8,49 +8,70 @@
     tools:context=".ExplanationActivity">
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/tororoColor"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="54dp"
-        tools:text="@string/explanation1" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="349dp"
-        android:layout_height="101dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
         android:text="@string/explanation2"
         android:textColor="@color/tororoColor"
         android:textSize="28sp"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="168dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:paddingStart="24dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/tororoColor"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/explanation1" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
         android:text="@string/explanation3"
         android:textColor="@color/tororoColor"
         android:textSize="28sp"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="296dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/tororoimo_ai"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="382dp" />
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:srcCompat="@drawable/tororoimo_ai" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/fukidashi"
-        tools:layout_editor_absoluteX="201dp"
-        tools:layout_editor_absoluteY="390dp" />
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:srcCompat="@drawable/fukidashi" />
 
     <TextView
         android:id="@+id/textView14"
@@ -58,15 +79,21 @@
         android:layout_height="wrap_content"
         android:text="よろしく〜！"
         android:textColor="@color/fuchidoriColor"
-        tools:layout_editor_absoluteX="270dp"
-        tools:layout_editor_absoluteY="438dp" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="@null"
-        app:srcCompat="@drawable/next_button"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="652dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/next_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
