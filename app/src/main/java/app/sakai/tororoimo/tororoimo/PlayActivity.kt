@@ -167,7 +167,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
             }
         }
 
-        Toast.makeText(this, textNumber.toString(), Toast.LENGTH_SHORT).show()
+
 
         val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         Log.d("Date", date)
