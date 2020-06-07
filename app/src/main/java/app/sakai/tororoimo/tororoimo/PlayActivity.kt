@@ -187,6 +187,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         intent.putExtra("ResultNumber", textNumber)
         intent.putExtra("CumulativeTextNumber", cumulativeTextNumber)
         startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     suspend fun View.startAnimationAsync(anim: Animation) {

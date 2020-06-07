@@ -53,11 +53,13 @@ class ResultActivity : AppCompatActivity() {
         resultReturnButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         resultReplayButton.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
 

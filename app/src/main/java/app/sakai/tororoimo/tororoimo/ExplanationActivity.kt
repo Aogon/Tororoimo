@@ -14,6 +14,7 @@ class ExplanationActivity : AppCompatActivity() {
         explanationNextButton.setOnClickListener {
             val intent = Intent(this, HowToPlayActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 }

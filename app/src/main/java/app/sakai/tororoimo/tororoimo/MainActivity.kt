@@ -14,11 +14,13 @@ class MainActivity : AppCompatActivity() {
         mainPlayButton.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         mainHowToPlayButton.setOnClickListener {
             val intent = Intent(this, ExplanationActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 }

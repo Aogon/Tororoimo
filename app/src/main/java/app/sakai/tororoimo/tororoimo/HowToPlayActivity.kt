@@ -14,6 +14,7 @@ class HowToPlayActivity : AppCompatActivity() {
         howtoplayOkButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 }
