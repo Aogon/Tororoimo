@@ -13,7 +13,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager.getDefaultSharedPreferences
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -59,7 +58,6 @@ class ResultActivity : AppCompatActivity() {
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
         val quotaState: Boolean = dataStore.getBoolean("QuotaState$date", false)
 
-        Log.d("quotaState", quotaState.toString())
 
         if (cumulativeTextNumber >= 30 && !quotaState) {
             val editor = dataStore.edit()

@@ -13,7 +13,6 @@ import android.provider.Contacts
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
@@ -48,7 +47,6 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
             secondText.text = second.toString()
             tororoimoView.clearAnimation()
             stopListening()
-            Log.d("timer", "Finished")
         }
 
         override  fun onTick(millisUntilFinished: Long) {
@@ -63,18 +61,12 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         Animation.RELATIVE_TO_SELF, 0.0f,
         Animation.RELATIVE_TO_SELF, 0.0f)
 
-//    val anim2 = TranslateAnimation(
-//        Animation.RELATIVE_TO_SELF, 0.5f,
-//        Animation.RELATIVE_TO_SELF, -0.5f,
-//        Animation.RELATIVE_TO_SELF, 0.0f,
-//        Animation.RELATIVE_TO_SELF, 0.0f)
 
     val anim3 = ScaleAnimation(
         1.0f, 1.0f, 1.0f, 0.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 1.0f
     )
 
     val set1: AnimationSet = AnimationSet(true)
-//    val set2: AnimationSet = AnimationSet(true)
 
 
 
@@ -108,10 +100,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         set1.addAnimation(anim3)
 
 
-//        set2.addAnimation(anim2)
-//        set2.addAnimation(anim3)
-//        set2.duration = 2000
-//        set2.fillAfter
+
 
         GlobalScope.launch{
 
@@ -151,26 +140,23 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
     private fun stopListening() {
         speechState = false
         speechRecognizer.stopListening()
-        Log.d("stopListening", "stopListening")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onResultsResponse(speechText: String) {
-//        Toast.makeText(this, speechText, Toast.LENGTH_SHORT).show()
-        Log.d("speechText", speechText)
+
         val speechTextArray: CharArray = speechText.toCharArray()
         var textNumber: Int = 0
         for (i in speechTextArray) {
             if(i == 'と' || i == 'た' || i == '取' || i == '谷' || i == '事'|| i == '元' || i == '止' || i == '頼' || i == '戻') {
                 textNumber++
-                Log.d("content of i", i.toString())
+
             }
         }
 
 
 
         val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
-        Log.d("Date", date)
 
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
 
@@ -179,7 +165,6 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         val editor = dataStore.edit()
         editor.putInt(date, cumulativeTextNumber)
         editor.apply()
-        Log.d("cumulativeTextNumber", cumulativeTextNumber.toString())
 
 
         val intent = Intent(this, ResultActivity::class.java)
@@ -195,7 +180,6 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         return suspendCoroutine { continuation ->
             anim.setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationStart(animation: Animation?) {
-                    Log.d("AnimationStart", animation.toString())
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
@@ -203,7 +187,6 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
-                    Log.d("AnimationRepeat", animation.toString())
                 }
             })
 
@@ -220,35 +203,34 @@ class SimpleRecognizerListener(private val listener: SimpleRecognizerResponseLis
     }
 
     override fun onReadyForSpeech(params: Bundle?) {
-        Log.d("ReadyForSpeech", params.toString())
+
     }
 
     override fun onRmsChanged(rmsdB: Float) {
-        Log.d("RmsChanged", rmsdB.toString())
+
     }
 
     override fun onBufferReceived(buffer: ByteArray?) {
-        Log.d("onBufferReceived", buffer.toString())
+
     }
 
     override fun onPartialResults(partialResults: Bundle?) {
-        Log.d("PartialResults", partialResults.toString())
+
     }
 
     override fun onEvent(eventType: Int, params: Bundle?) {
-        Log.d("Event", eventType.toString())
+
     }
 
     override fun onBeginningOfSpeech() {
-        Log.d("onBeginningOfSpeech", "onBeginningOfSpeech")
+
     }
 
     override fun onEndOfSpeech() {
-        Log.d("onEndOfSpeech", "onEndOfSpeech")
+
     }
 
     override fun onError(error: Int) {
-        Log.d("Error", error.toString())
     }
 
     override fun onResults(results: Bundle?) {
