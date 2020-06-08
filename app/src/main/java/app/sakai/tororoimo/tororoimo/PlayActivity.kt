@@ -169,7 +169,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
 
 
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
         Log.d("Date", date)
 
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)

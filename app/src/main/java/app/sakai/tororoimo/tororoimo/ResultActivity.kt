@@ -34,7 +34,7 @@ class ResultActivity : AppCompatActivity() {
 
         val cumulativeTextNumber: Int = intent.getIntExtra("CumulativeTextNumber", 0)
 
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
 
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
         val quotaState: Boolean = dataStore.getBoolean("QuotaState$date", false)
@@ -46,6 +46,9 @@ class ResultActivity : AppCompatActivity() {
             editor.putBoolean("QuotaState$date", true)
             editor.apply()
             val dialog = CustomDialogFragment()
+            val args = Bundle()
+            args.putString("date", date)
+            dialog.arguments = args
             dialog.show(this.supportFragmentManager, "achieve")
 
         }
