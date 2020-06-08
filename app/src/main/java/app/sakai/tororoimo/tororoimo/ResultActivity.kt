@@ -1,5 +1,6 @@
 package app.sakai.tororoimo.tororoimo
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -21,9 +22,12 @@ import kotlinx.android.synthetic.main.activity_result.*
 import java.lang.IllegalStateException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import kotlin.random.Random
+
 
 class ResultActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,22 @@ class ResultActivity : AppCompatActivity() {
 
         val resultNumber: Int = intent.getIntExtra("ResultNumber", 0)
         resultView.text = resultNumber.toString()
+
+        var random = Random.nextInt(3)
+        when(random) {
+            0 -> {
+                adviceView.text = "舌の力を\n抜くと\nいいらしいよ"
+            }
+            1 -> {
+                adviceView.text = "舌の運動をすると\nいいらしいよ"
+            }
+            2 -> {
+                adviceView.text = "巻き舌が\n上手い人を\nイメージしよう"
+            }
+            3 -> {
+                adviceView.text = "上を向いて\n練習してみよう"
+            }
+        }
 
         val cumulativeTextNumber: Int = intent.getIntExtra("CumulativeTextNumber", 0)
 
