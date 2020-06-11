@@ -78,6 +78,8 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
         val recordAudioPermission = android.Manifest.permission.RECORD_AUDIO
         val currentPermissionState = ContextCompat.checkSelfPermission(this, recordAudioPermission)
+
+
         if (currentPermissionState != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity, recordAudioPermission)) {
                 permissionState = false

@@ -3,6 +3,8 @@ package app.sakai.tororoimo.tororoimo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -10,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainVolumeButton.visibility = View.INVISIBLE
 
         mainPlayButton.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
