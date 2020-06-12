@@ -47,6 +47,8 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
             secondText.text = second.toString()
             tororoimoView.clearAnimation()
             stopListening()
+            val dialog = EndDialogFragment()
+            dialog.show(supportFragmentManager, "end")
         }
 
         override  fun onTick(millisUntilFinished: Long) {
