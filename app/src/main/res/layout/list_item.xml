@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/listImageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="8dp"
