@@ -7,5 +7,5 @@ import java.util.*
 open class Results (
     @PrimaryKey open var id: String = UUID.randomUUID().toString(),
     open var date: Date = Date(System.currentTimeMillis()),
-    open var result: String = ""
+    open var resultTextNumber: Int = 0
 ) : RealmObject()

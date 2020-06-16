@@ -26,5 +26,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
+
+        mainTororoimoView.setOnClickListener {
+            val intent = Intent(this, ContinuationActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
     }
 }
