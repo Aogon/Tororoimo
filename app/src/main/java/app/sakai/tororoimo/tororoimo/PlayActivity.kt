@@ -22,6 +22,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_play.*
 import kotlinx.android.synthetic.main.dialog_end.*
 import kotlinx.coroutines.GlobalScope
@@ -29,6 +30,7 @@ import kotlinx.coroutines.launch
 import java.lang.Thread.sleep
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -42,6 +44,10 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
     var permissionState : Boolean = false
     var second = 10
+
+    private val realm: Realm by lazy {
+        Realm.getDefaultInstance()
+    }
 
     val timer : CountDownTimer = object  :CountDownTimer(10000, 1000) {
         override fun onFinish() {
@@ -171,6 +177,10 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         val editor = dataStore.edit()
         editor.putInt(date, cumulativeTextNumber)
         editor.apply()
+        realm.executeTransaction {
+            val result = it.createObject(Results::class.java, UUID.randomUUID().toString())
+            result.resultTextNumber = textNumber
+        }
 
 
         val intent = Intent(this, ResultActivity::class.java)

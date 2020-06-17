@@ -22,6 +22,7 @@ class ResultAdapter (
     override fun onBindViewHolder(holder: ResultAdapter.ResultViewHolder, position: Int) {
         val result: Results = resultList?.get(position) ?: return
         holder.dateTextView.text = SimpleDateFormat("yyyy年MM月dd日", Locale.JAPANESE).format(result.date)
+        holder.resultTextView.text = result.resultTextNumber.toString() + "とろろいも"
     }
 
     override fun onCreateViewHolder(

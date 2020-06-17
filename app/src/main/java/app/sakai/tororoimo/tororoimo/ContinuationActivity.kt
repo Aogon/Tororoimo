@@ -20,9 +20,9 @@ class ContinuationActivity : AppCompatActivity() {
 
         val resultList = readAll()
 
-        if(resultList.isEmpty()) {
-            createDummyData()
-        }
+//        if(resultList.isEmpty()) {
+//            createDummyData()
+//        }
 
 
         val adapter = ResultAdapter(this, resultList, true)
@@ -38,11 +38,11 @@ class ContinuationActivity : AppCompatActivity() {
         realm.close()
     }
 
-    fun createDummyData() {
-        for (i in 0..10) {
-            create(i)
-        }
-    }
+//    fun createDummyData() {
+//        for (i in 0..10) {
+//            create(i)
+//        }
+//    }
 
     fun create(resultTextNumber: Int) {
         realm.executeTransaction {
