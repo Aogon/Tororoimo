@@ -187,6 +187,7 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
         intent.putExtra("Date", date)
         intent.putExtra("ResultNumber", textNumber)
         intent.putExtra("CumulativeTextNumber", cumulativeTextNumber)
+        sleep(2000)
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
