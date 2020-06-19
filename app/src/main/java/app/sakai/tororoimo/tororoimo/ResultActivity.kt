@@ -19,8 +19,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.activity_result.*
 import java.lang.IllegalStateException
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.random.Random
 
 
@@ -53,7 +55,8 @@ class ResultActivity : AppCompatActivity() {
 
         val cumulativeTextNumber: Int = intent.getIntExtra("CumulativeTextNumber", 0)
 
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
+//        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
+        val date = SimpleDateFormat("yyyy年MM月dd日", Locale.JAPANESE).format(Date(System.currentTimeMillis()))
 
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
         val quotaState: Boolean = dataStore.getBoolean("QuotaState$date", false)

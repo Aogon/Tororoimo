@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.dialog_end.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Thread.sleep
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -168,7 +169,8 @@ class PlayActivity : AppCompatActivity(), SimpleRecognizerListener.SimpleRecogni
 
 
 
-        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
+//        val date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"))
+        val date = SimpleDateFormat("yyyy年MM月dd日", Locale.JAPANESE).format(Date(System.currentTimeMillis()))
 
         val dataStore: SharedPreferences = getSharedPreferences("DataStore", Context.MODE_PRIVATE)
 
